@@ -1,6 +1,9 @@
 // main.js
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+//below are the commonjs way
+// var React = require('react');
+// var ReactDOM = require('react-dom');
 
 /************tutorial1
 ReactDOM.render(
@@ -9,7 +12,6 @@ ReactDOM.render(
 );
 *********************/
 
-/************tutorial2
 var names = ['Alice', 'Emily', 'Kate'];
 ReactDOM.render(
 	<div>
@@ -22,7 +24,7 @@ ReactDOM.render(
 	document.getElementById('example')
 	);
 //reactDom是实例化根组件，用于启动项目，需要在html的最下面的js文件中，保证所有组件已加载
-*********************/
+
 
 /*******************tutorial3: jsx
 var name="lily";

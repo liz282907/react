@@ -1,8 +1,18 @@
 'use strict';
 
-// main.js
-var React = require('react');
-var ReactDOM = require('react-dom');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//below are the commonjs way
+// var React = require('react');
+// var ReactDOM = require('react-dom');
 
 /************tutorial1
 ReactDOM.render(
@@ -11,20 +21,21 @@ ReactDOM.render(
 );
 *********************/
 
-/************tutorial2
+// main.js
 var names = ['Alice', 'Emily', 'Kate'];
-ReactDOM.render(
-	<div>
-	{
-		names.map(function(name){
-			return <h1>hello,{name}</h1>;
-		})
-	}
-	</div>,
-	document.getElementById('example')
-	);
+_reactDom2.default.render(_react2.default.createElement(
+	'div',
+	null,
+	names.map(function (name) {
+		return _react2.default.createElement(
+			'h1',
+			null,
+			'hello,',
+			name
+		);
+	})
+), document.getElementById('example'));
 //reactDom是实例化根组件，用于启动项目，需要在html的最下面的js文件中，保证所有组件已加载
-*********************/
 
 /*******************tutorial3: jsx
 var name="lily";

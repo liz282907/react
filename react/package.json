@@ -5,7 +5,11 @@
     "babelify": "^7.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-connect": "^4.0.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1"
+  },
+  "dependencies": {
+    "react-router": "^2.3.0"
   }
 }
