@@ -7,24 +7,37 @@ import {Router,Route,Link,IndexRoute} from 'react-router';
 //下面是一些示例，具体的路由、组件、名称定义待定
 
 var App = React.createClass({
+	getInitialState:function(){
+		return {
+			city: "全国",
+			time: new Date().toJSON().slice(0,10), //2016-04-29
+			interval:1000*60 //1 minite
+		}
+	},
 	render:function(){
-		return(
+		//category:{id: "01",name:"快车"}
+		var that = this; //attention for this!!
+		var lis = this.props.data.map(function(category,index){
+			//pathname+category.categoryId+
+			//http://localhost/monitor/category/05?city=%E5%85%A8%E5%9B%BD&interval=60000&time=2016-04-29
+			var url_path = "/monitor/category/"+category.id;
+			var url_query = {city:that.state.city,time:that.state.time,interval:that.state.interval};
+
+			return (
+					<li key = {category.id}>
+						<Link to={{pathname:url_path,query:url_query}}>{category.name}</Link>
+					</li>);
+		});
+
+		return (
 			<div>
-				<ul>
-					<li><Link to="/monitor/category/01">快车</Link></li>
-					<li><Link to="/monitor/category/02">出租车</Link></li>
-					<li><Link to="/monitor/category/03">专车</Link></li>
-					<li><Link to="/monitor/category/04">其他检测项</Link></li>
-
-					<li><a href="/monitor/category/01">快车</a></li>
-					<li><Link to="/monitor/category/02">出租车</Link></li>
-					<li><Link to="/monitor/category/03">专车</Link></li>
-					<li><Link to="/monitor/category/04">其他检测项</Link></li>
+				<ul className = "grids">
+					{lis}
 				</ul>
-				{ /* this.props.children */}
-			</div>
+				{this.props.children}
+			</div>)
 
-		)}
+		}
 
 });
 

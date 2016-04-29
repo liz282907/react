@@ -36,6 +36,8 @@ var Category = _react2.default.createClass({
 	displayName: "Category",
 
 	render: function render() {
+		var query = this.props.location.query;
+
 		return _react2.default.createElement(
 			"div",
 			null,
@@ -46,6 +48,24 @@ var Category = _react2.default.createClass({
 				"div",
 				null,
 				this.props.params.categoryId
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				"当前日期：",
+				query.time
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				"城市：",
+				query.city
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				"城市：",
+				query.interval
 			)
 		);
 	}

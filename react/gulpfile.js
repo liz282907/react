@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var babel = require("gulp-babel");
 var gulpConnect = require("gulp-connect");
+var browserify = require("gulp-browserify");
 
 var path = {
 	src:["src/**/*.js"],
@@ -24,8 +25,17 @@ gulp.task('server',function(){
 	gulpConnect.server({
 		port:80,
 		livereload:true,
-		fallback:"src/views/page1.html"
+	 	fallback:"src/views/page1.html"
 	});
 });
 
-gulp.task('default',['server','build','babel:watch']);
+gulp.task("browserify",function(){
+	gulp.src("build/javascripts/routes/*.js")
+		.pipe(browserify({
+			insertGlobals:true
+			// debug:!gulp.env.production
+		}))
+		.pipe(gulp.dest("build/javascripts/entries/*.js"));
+})
+
+gulp.task("default",["server","build","babel:watch"]);

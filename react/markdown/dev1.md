@@ -13,3 +13,17 @@ gulp.task('server',function(){
 
 2.
 ![category页面](http://i3.piimg.com/cbe5f8e6bd958153.png)
+
+3. 注意保持map前的this.
+var that = this; //attention for this!!
+
+4.key的问题
+![](http://i4.piimg.com/92519797449f9f21.png)
+
+###to do
+1.[多browserify](http://stackoverflow.com/questions/23835898/how-to-output-multiple-bundles-with-browserify-and-gulp)
+[](https://fettblog.eu/gulp-browserify-multiple-bundles/)
+[](https://csspod.com/using-browserify-with-gulp/)
+
+2.webpack
+3.className

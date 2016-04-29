@@ -16,6 +16,8 @@ var SelectLists = React.createClass({
 
 var Category = React.createClass({
 	render:function(){
+		var query = this.props.location.query;
+
 		return(
 			<div>
 				<hr />
@@ -23,6 +25,9 @@ var Category = React.createClass({
 				<Select >
 				</Select>
 				<div>{this.props.params.categoryId}</div>
+				<div>当前日期：{query.time}</div>
+				<div>城市：{query.city}</div>
+				<div>城市：{query.interval}</div>
 			</div>
 		)}
 

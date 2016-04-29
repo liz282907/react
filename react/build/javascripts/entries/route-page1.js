@@ -188,86 +188,42 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = _react2.default.createClass({
 	displayName: 'App',
 
+	getInitialState: function getInitialState() {
+		return {
+			city: "全国",
+			time: new Date().toJSON().slice(0, 10), //2016-04-29
+			interval: 1000 * 60 //1 minite
+		};
+	},
 	render: function render() {
+		//category:{id: "01",name:"快车"}
+		var that = this; //attention for this!!
+		var lis = this.props.data.map(function (category, index) {
+			//pathname+category.categoryId+
+			//http://localhost/monitor/category/05?city=%E5%85%A8%E5%9B%BD&interval=60000&time=2016-04-29
+			var url_path = "/monitor/category/" + category.id;
+			var url_query = { city: that.state.city, time: that.state.time, interval: that.state.interval };
+
+			return _react2.default.createElement(
+				'li',
+				{ key: category.id },
+				_react2.default.createElement(
+					_reactRouter.Link,
+					{ to: { pathname: url_path, query: url_query } },
+					category.name
+				)
+			);
+		});
+
 		return _react2.default.createElement(
 			'div',
 			null,
 			_react2.default.createElement(
 				'ul',
-				null,
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/monitor/category/01' },
-						'快车'
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/monitor/category/02' },
-						'出租车'
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/monitor/category/03' },
-						'专车'
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/monitor/category/04' },
-						'其他检测项'
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						'a',
-						{ href: '/monitor/category/01' },
-						'快车'
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/monitor/category/02' },
-						'出租车'
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/monitor/category/03' },
-						'专车'
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/monitor/category/04' },
-						'其他检测项'
-					)
-				)
-			)
+				{ className: 'grids' },
+				lis
+			),
+			this.props.children
 		);
 	}
 
@@ -313,6 +269,8 @@ var Category = _react2.default.createClass({
 	displayName: "Category",
 
 	render: function render() {
+		var query = this.props.location.query;
+
 		return _react2.default.createElement(
 			"div",
 			null,
@@ -323,6 +281,24 @@ var Category = _react2.default.createClass({
 				"div",
 				null,
 				this.props.params.categoryId
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				"当前日期：",
+				query.time
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				"城市：",
+				query.city
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				"城市：",
+				query.interval
 			)
 		);
 	}
@@ -356,12 +332,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ulElement = document.getElementById("part1");
 
 //下面是一些示例，具体的路由、组件、名称定义待定
+
+var linksData = [{ id: "01", name: "出租车监控" }, { id: "02", name: "快车监控" }, { id: "03", name: "顺风车监控" }, { id: "04", name: "代驾监控" }, { id: "05", name: "客服监控" }];
+
+// var wrapperApp = React.createElement(App,{data:linksData});
+
+var AppWrapper = _react2.default.createClass({
+	displayName: 'AppWrapper',
+
+	render: function render() {
+		return _react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement(_app2.default, { data: linksData }),
+			this.props.children
+		);
+	}
+});
 var router = _react2.default.createElement(
 	_reactRouter.Router,
 	{ history: _reactRouter.browserHistory },
 	_react2.default.createElement(
 		_reactRouter.Route,
-		{ path: '/monitor/', component: _app2.default },
+		{ path: '/monitor/', component: AppWrapper },
 		_react2.default.createElement(_reactRouter.Route, { path: 'category/:categoryId', component: _category2.default })
 	)
 );
