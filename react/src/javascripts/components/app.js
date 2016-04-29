@@ -20,12 +20,19 @@ var App = React.createClass({
 		var lis = this.props.data.map(function(category,index){
 			//pathname+category.categoryId+
 			//http://localhost/monitor/category/05?city=%E5%85%A8%E5%9B%BD&interval=60000&time=2016-04-29
+			//<Link to={{pathname:url_path,query:url_query}}>{category.name}</Link>
 			var url_path = "/monitor/category/"+category.id;
 			var url_query = {city:that.state.city,time:that.state.time,interval:that.state.interval};
 
+			var queryParams = [];
+			for (var d in url_query)
+			    queryParams.push(encodeURIComponent(d) + "=" + encodeURIComponent(url_query[d]));
+			var queryStr = queryParams.join("&");
+
+
 			return (
 					<li key = {category.id}>
-						<Link to={{pathname:url_path,query:url_query}}>{category.name}</Link>
+						<a href = {url_path+"?"+queryStr} >{category.name}</a>
 					</li>);
 		});
 
