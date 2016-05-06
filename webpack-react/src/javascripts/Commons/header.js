@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDom from "react-dom";
+import "./Header.scss";
 
 
 var Header = React.createClass({
 	render:function(){
 		return (
-			<header>
+			<header className="header">
 				<span>{this.props.title}</span>
-				<button>分享</button>
+				<button className="share-btn">分享</button>
 			</header>
 			)
 	}

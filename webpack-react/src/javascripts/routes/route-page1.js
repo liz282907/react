@@ -3,7 +3,6 @@ import ReactDom from 'react-dom';
 import {Router,Route,Link,browserHistory} from 'react-router';
 
 import App from "../components/app.js";
-import Category from "../components/category.js";
 
 var ulElement = document.getElementById("part1");
 

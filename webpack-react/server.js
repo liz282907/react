@@ -1,9 +1,9 @@
 var webpack = require('webpack'),
 	WebpackDevServer = require('webpack-dev-server'),
 	config = require('./webpack.config.js'),
-	fs = require("fs"),
+	// fs = require("fs"),
 	path = require("path"),
-	rewrite = require("express-urlrewrite"),
+	// rewrite = require("express-urlrewrite"),
 	express = require("express");
 
 var server = new WebpackDevServer(webpack(config), {
@@ -16,7 +16,7 @@ var server = new WebpackDevServer(webpack(config), {
 });
 var app = express();
 
-var viewsDir = path.join(__dirname,"src","views");
+// var viewsDir = path.join(__dirname,"src","views");
 
 /*
 fs.readdirSync(path.join(__dirname,"src","views")).forEach(function(file,index){

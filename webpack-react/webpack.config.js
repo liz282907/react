@@ -14,7 +14,7 @@ module.exports = {
 
 	output:{
 		path:BUILD_DIR,
-		filename:"[name].bundle.js",
+		filename:"[name].[hash].bundle.js",
 		publicPath:"/monitor/",
 	},
 
@@ -30,16 +30,22 @@ module.exports = {
 				// 	presets:['react','es2015']
 				// }
 			},
+			{
+				test:/\.scss$/,
+				loader:"style!css!sass" //run from right to left
+			}
 
 		]
 	},
 
 	resolve:{
 		//配置别名，例如ui: dir+"/js/ui" 以后可以直接用ui代替后者
-		alias:{}
+		alias:{
+			reset:path.join(__dirname,"src","stylesheets","reset.css")
+		}
 	},
 
-	// devtool:DEBUG==="DEBUG"?'source-map':false,
+	devtool:'eval-source-map',
 
 	plugins:[
 		new webpack.DefinePlugin({

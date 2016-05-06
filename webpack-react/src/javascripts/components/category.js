@@ -20,7 +20,7 @@ var Category = React.createClass({
 		var query = this.props.location.query;
 
 		return(
-			<div>
+			<div >
 				<hr />
 				<Header title="Header:props of title"/>
 
