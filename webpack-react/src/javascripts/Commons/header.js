@@ -3,6 +3,10 @@ import ReactDom from "react-dom";
 import "./Header.scss";
 
 
+// var style = {
+// 			padding: 20,
+// 			backgroundColor:"#abd",
+// };
 var Header = React.createClass({
 	render:function(){
 		return (

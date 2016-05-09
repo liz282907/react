@@ -7,7 +7,7 @@
     "start": "node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev": "webpack-dev-server --color --hot --progress && node ./server.js"
+    "dev": "webpack-dev-server --color --hot --progress && NODE_ENV = dev node ./server.js"
   },
   "author": "",
   "license": "ISC",

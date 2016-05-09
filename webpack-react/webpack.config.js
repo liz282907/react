@@ -4,6 +4,8 @@ var webpack = require('webpack'),
 	BUILD_DIR = path.join(__dirname,'build',"javascripts","entries"),
 	SRC_DIR = path.join(__dirname,'src');
 
+	console.log("__dirname",__dirname);
+
 var DEBUG = process.env.NODE_ENV;
 console.log('DEBUG: ' + DEBUG);
 
@@ -14,8 +16,9 @@ module.exports = {
 
 	output:{
 		path:BUILD_DIR,
-		filename:"[name].[hash].bundle.js",
-		publicPath:"/monitor/",
+		filename:"[name].bundle.js",
+		// publicPath:"/monitor/",
+		publicPath:"http://localhost:3001/build/"
 	},
 
 	module:{
@@ -32,7 +35,12 @@ module.exports = {
 			},
 			{
 				test:/\.scss$/,
-				loader:"style!css!sass" //run from right to left
+				loaders:['style','css','sass'],
+				//loader:"style!css!sass" //run from right to left
+			},
+			{
+				test:/\.css$/,
+				loader:"style!css" //run from right to left
 			}
 
 		]
@@ -68,6 +76,7 @@ function getEntries(){
 	var nameMaps = {};
 	routeNames.forEach(function(routeName){
 		var filename = routeName.match(/(.+)\.js$/)[1];
+		console.log("filename in entry ",filename);
 		if(filename){
 			var devEntryPath = [
                 'webpack-dev-server/client?http://127.0.0.1:3001', // WebpackDevServer host and port

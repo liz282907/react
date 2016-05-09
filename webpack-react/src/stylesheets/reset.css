@@ -1,0 +1,44 @@
+html,body, h1, h2, h3, h4, h5, h6, hr, p, ul, ol, li, pre, form, fieldset, legend,
+button, input, textarea, th, td,img
+{
+	margin:0; padding:0;
+	font-size: 12px;
+	outline: none;
+	border:none;
+}
+
+body, button, input,textarea {
+	font:300 1em/1.8 Microsoft Yahei,  sans;
+}
+
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+
+
+ul{ list-style:none; }
+
+a { text-decoration:none;color: #000;cursor: default;};
+
+a:hover { text-decoration:none; }
+
+img { border:0;
+  border-style: none;
+}
+em{font-style: normal;}
+
+select,input,textarea{
+	outline: none;
+	border:none;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+
+}
+input[type="submit"]{
+	background: none;
+	border:none;
+	cursor: pointer;
+}
+
+div:focus{
+	outline: none;
+}
