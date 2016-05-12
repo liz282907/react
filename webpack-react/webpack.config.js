@@ -41,6 +41,10 @@ module.exports = {
 			{
 				test:/\.css$/,
 				loader:"style!css" //run from right to left
+			},
+			{
+				test:/\.(png|jpg)$/,
+				loader:"url?limit=8192"
 			}
 
 		]
@@ -49,7 +53,8 @@ module.exports = {
 	resolve:{
 		//配置别名，例如ui: dir+"/js/ui" 以后可以直接用ui代替后者
 		alias:{
-			reset:path.join(__dirname,"src","stylesheets","reset.css")
+			reset:path.join(__dirname,"src","stylesheets","reset.css"),
+			images:path.resolve(__dirname,"src","images"),
 		}
 	},
 

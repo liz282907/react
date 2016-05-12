@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {Router,Route,Link,IndexRoute} from 'react-router';
+import '../../stylesheets/reset.css';
+import '../../stylesheets/util.scss';
+import Search from '../Commons/Search/Search.js';
+import Grids from '../Commons/Grids/Grids.js';
+
 
 // import Category from "../components/category.js";
 
@@ -15,6 +20,7 @@ var App = React.createClass({
 		}
 	},
 	render:function(){
+		/*
 		//category:{id: "01",name:"快车"}
 		var that = this; //attention for this!!
 		var lis = this.props.data.map(function(category,index){
@@ -35,11 +41,14 @@ var App = React.createClass({
 						<a href = {url_path+"?"+queryStr} >{category.name}</a>
 					</li>);
 		});
-
+		*/
 		return (
 			<div>
+				<Search />
+				<Grids data={this.props.data}/>
+
+
 				<ul className = "grids">
-					{lis}
 				</ul>
 				{this.props.children}
 			</div>)

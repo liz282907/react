@@ -33,11 +33,6 @@ select,input,textarea{
 	-webkit-appearance:none;
 
 }
-input[type="submit"]{
-	background: none;
-	border:none;
-	cursor: pointer;
-}
 
 div:focus{
 	outline: none;

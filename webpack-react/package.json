@@ -7,7 +7,7 @@
     "start": "node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev": "webpack-dev-server --color --hot --progress && NODE_ENV = dev node ./server.js"
+    "dev": "webpack-dev-server --color --hot --progress --display-error-details && NODE_ENV = dev node ./server.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "react-router": "^2.4.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
   }

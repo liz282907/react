@@ -31,6 +31,10 @@ app.get("/monitor/category/*",function(req,res){
 	res.sendFile(__dirname+"/src/views/"+"page2.html");
 });
 
+app.get("/monitor/category/*",function(req,res){
+	res.sendFile(__dirname+"/src/views/"+"page2.html");
+});
+
 app.use(express.static(__dirname))
 		.listen(9090, 'localhost', function (err, result) {
 			  if (err) console.log(err);
