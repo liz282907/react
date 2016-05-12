@@ -16,7 +16,7 @@ var linksData = [{id:"01",name:"出租车监控"},{id:"02",name:"专车监控"},
 				{id:"07",name:"公交监控"},{id:"08",name:"Phoenix支付专区"}];
 
 // var wrapperApp = React.createElement(App,{data:linksData});
-
+/*
 var AppWrapper = React.createClass({
 	fetchCategoriesFromServer:function(){
 
@@ -38,9 +38,10 @@ var AppWrapper = React.createClass({
 			 )
 	}
 });
+*/
 var router = (
 	<Router history={browserHistory}>
-		<Route  path = "/monitor/index" component = {AppWrapper}>
+		<Route  path = "/monitor/index" component = {App}>
 		</Route>
 	</Router>
 	);

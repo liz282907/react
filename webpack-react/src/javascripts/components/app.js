@@ -6,17 +6,41 @@ import '../../stylesheets/util.scss';
 import Search from '../Commons/Search/Search.js';
 import Grids from '../Commons/Grids/Grids.js';
 
+import {categoryList} from "../../../config/serverConfig.js";
+// var serverConfig = require("../../../config/serverConfig.js");
 
 // import Category from "../components/category.js";
 
 //下面是一些示例，具体的路由、组件、名称定义待定
 
 var App = React.createClass({
+	fetchCategoriesFromServer:function(){
+
+	},
+	componentDidMount:function(){
+		$.ajax({
+			url:categoryList,
+			type:"GET",
+			dataType:"json",
+			success:function(data){
+				this.setState({
+					//[] array
+					categories:data.categories
+				});
+			}.bind(this),
+			error:function(xhr,errorType,error){
+				console.log(err);
+
+			}.bind(this)
+		});
+
+	},
 	getInitialState:function(){
 		return {
-			city: "全国",
-			time: new Date().toJSON().slice(0,10), //2016-04-29
-			interval:1000*60 //1 minite
+			categories:[]
+			// city: "全国",
+			// time: new Date().toJSON().slice(0,10), //2016-04-29
+			// interval:1000*60 //1 minite
 		}
 	},
 	render:function(){
@@ -45,7 +69,7 @@ var App = React.createClass({
 		return (
 			<div>
 				<Search />
-				<Grids data={this.props.data}/>
+				<Grids data={this.state.categories}/>
 
 
 				<ul className = "grids">
