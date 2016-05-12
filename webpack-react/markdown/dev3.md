@@ -58,3 +58,18 @@ var imgsrc = requireContext("./"+that.getImageUrls()[index]);
 ###references
 1.[7.context](http://www.cnblogs.com/Leo_wl/p/4862714.html)
 2.[require.context](https://webpack.github.io/docs/context.html)
+
+
+2. style 
+【注意】：
+（1）逗号
+（2）驼峰 eg backgroundColor代替background-color
+（3）双引号
+
+```
+var style = {
+            position:"relative"
+        };
+        return (
+            <div style={style}>
+```

@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {Router,Route,Link,IndexRoute} from 'react-router';
+
+import Search from '../Commons/search/Search.js';
+import Grids from '../Commons/Grids/Grids.js';
+import PopupPage from "./PopupPage.js";
+
 import '../../stylesheets/reset.css';
 import '../../stylesheets/util.scss';
-import Search from '../Commons/Search/Search.js';
-import Grids from '../Commons/Grids/Grids.js';
+
 
 import {categoryList} from "../../../config/serverConfig.js";
+
 // var serverConfig = require("../../../config/serverConfig.js");
 
 // import Category from "../components/category.js";
@@ -15,9 +20,6 @@ import {categoryList} from "../../../config/serverConfig.js";
 
 var App = React.createClass({
 	fetchCategoriesFromServer:function(){
-
-	},
-	componentDidMount:function(){
 		$.ajax({
 			url:categoryList,
 			type:"GET",
@@ -33,10 +35,25 @@ var App = React.createClass({
 
 			}.bind(this)
 		});
-
+	},
+	showPopupPage:function(){
+		console.log("----------show-----------");
+		this.setState({showPopupPage:true});
+		// React.findDomNode(this.refs.popupPage).setAttribute("display","block");
+		// console.log("-------popupPage-------",this.refs.popupPage.getDomNode().);
+	},
+	hidePopupPage:function(){
+		console.log("----------hide-----------");
+		this.setState({showPopupPage:false});
+		// React.findDomNode(this.refs.popupPage).setAttribute("display","none");
+		// console.log("-------popupPage-------",this.refs.popupPage.getDomNode().);
+	},
+	componentDidMount:function(){
+		this.fetchCategoriesFromServer();
 	},
 	getInitialState:function(){
 		return {
+			showPopupPage:false,
 			categories:[]
 			// city: "全国",
 			// time: new Date().toJSON().slice(0,10), //2016-04-29
@@ -66,14 +83,15 @@ var App = React.createClass({
 					</li>);
 		});
 		*/
+		var style = {
+			position:"relative"
+		};
 		return (
-			<div>
-				<Search />
+			<div style={style}>
+				<Search data="搜索" onInputFocus={this.showPopupPage.bind(this)} onInputBlur={this.hidePopupPage.bind(this)}/>
 				<Grids data={this.state.categories}/>
+				{this.state.showPopupPage ? <PopupPage ref="popupPage"/> : null}
 
-
-				<ul className = "grids">
-				</ul>
 				{this.props.children}
 			</div>)
 
