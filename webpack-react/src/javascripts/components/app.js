@@ -6,6 +6,8 @@ import Search from '../Commons/search/Search.js';
 import Grids from '../Commons/Grids/Grids.js';
 import PopupPage from "./PopupPage.js";
 
+
+// import '../../stylesheets/sass/page1.scss';
 import '../../stylesheets/reset.css';
 import '../../stylesheets/util.scss';
 
@@ -47,10 +49,8 @@ var App = React.createClass({
 		// console.log("-------popupPage-------",this.refs.popupPage.getDomNode().);
 	},
 	hidePopupPage:function(){
-		console.log("home blur");
 		this.setState({showPopupPage:false});
 		// React.findDomNode(this.refs.popupPage).setAttribute("display","none");
-		// console.log("-------popupPage-------",this.refs.popupPage.getDomNode().);
 	},
 	componentDidMount:function(){
 		this.fetchCategoriesFromServer();
@@ -93,6 +93,17 @@ var App = React.createClass({
 		var searchWrapper={
 			padding: "14px 20px"
 		};
+		// var overlayStyle = {
+		// 	position: "fixed",
+		// 	left:0,
+		// 	top:0,
+		// 	zIndex: 5,
+		// 	width: "100%",
+		// 	height: "100%",
+		// 	border:"1px solid red",
+		// 	backgroundColor:"#fff",
+		// 	opcity:"0.6"
+		// };
 
 		return (
 			<div style={style} ref="home">
@@ -101,17 +112,8 @@ var App = React.createClass({
 				</div>
 				<Grids data={this.state.categories}/>
 				{this.state.showPopupPage ?
-					<div>
-					<div>
-
-					</div>
-						<PopupPage ref="popupPage" onCancelBtnClick={this.hidePopupPage}/>
-
-
-
-					</div> : null}
-
-
+					<PopupPage ref="popupPage" onCancelBtnClick={this.hidePopupPage}/>
+					: null}
 			</div>)
 
 		}

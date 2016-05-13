@@ -13,7 +13,7 @@ var Search = React.createClass({
 		return (
 			<div className="search-wrapper">
 				<input type="text" name="search" onFocus= {this.showParentFocus}
-				onBlur={this.props.onInputBlur} placeholder={this.props.data} className="search"/>
+				 placeholder={this.props.data} className="search"/>
 			{this.props.children}
 			</div>
 			)

@@ -2,7 +2,6 @@ import React from "react";
 import ReactDom from "react-dom";
 
 import Search from "../Commons/search/Search.js";
-// import "../Commons/search/Search.scss";
 import "../../stylesheets/sass/PopupPage.scss";
 
 

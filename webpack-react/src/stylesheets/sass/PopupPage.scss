@@ -1,6 +1,7 @@
 @import "../../javascripts/Commons/search/Search.scss";
 
 .popup{
+	box-sizing:border-box;
 	position: fixed;
 	background-color: white;
 	left: 0;
