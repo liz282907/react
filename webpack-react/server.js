@@ -87,6 +87,29 @@ app.get("/monitor/index/categoryList",function(req,res){
 	// res.sendFile(__dirname+"/mock/page1.json");
 });
 
+app.get("/monitor/index/monitorList",function(req,res){
+	var data = {"monitorList":[
+					{
+						"name":"出租车监控",
+						"url":""
+						},
+					{
+						"name":"专车监控",
+						"url":""
+						},
+					{
+						"name":"快车监控",
+						"url":""
+						}
+					]
+				};
+
+
+
+	res.json(data);
+});
+
+
 app.use(express.static(__dirname))
 		.listen(9090, 'localhost', function (err, result) {
 			  if (err) console.log(err);
