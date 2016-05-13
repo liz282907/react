@@ -37,13 +37,17 @@ var App = React.createClass({
 		});
 	},
 	showPopupPage:function(){
-		console.log("----------show-----------");
+		console.log("home focus");
 		this.setState({showPopupPage:true});
+		// this.refs.home.style.pointerEvents = "none";
+		console.log("-------dom node",this.refs.home.style);
+		// this.refs.homeSearch.getDomNode().style.pointerEvents="none";
+		// React.findDomNode(this.refs.homeSearch).style.pointerEvents = "none";
 		// React.findDomNode(this.refs.popupPage).setAttribute("display","block");
 		// console.log("-------popupPage-------",this.refs.popupPage.getDomNode().);
 	},
 	hidePopupPage:function(){
-		console.log("----------hide-----------");
+		console.log("home blur");
 		this.setState({showPopupPage:false});
 		// React.findDomNode(this.refs.popupPage).setAttribute("display","none");
 		// console.log("-------popupPage-------",this.refs.popupPage.getDomNode().);
@@ -86,13 +90,28 @@ var App = React.createClass({
 		var style = {
 			position:"relative"
 		};
-		return (
-			<div style={style}>
-				<Search data="搜索" onInputFocus={this.showPopupPage.bind(this)} onInputBlur={this.hidePopupPage.bind(this)}/>
-				<Grids data={this.state.categories}/>
-				{this.state.showPopupPage ? <PopupPage ref="popupPage"/> : null}
+		var searchWrapper={
+			padding: "14px 20px"
+		};
 
-				{this.props.children}
+		return (
+			<div style={style} ref="home">
+				<div style={searchWrapper} >
+					<Search data="搜索" onInputFocus={this.showPopupPage} onInputBlur={this.hidePopupPage}/>
+				</div>
+				<Grids data={this.state.categories}/>
+				{this.state.showPopupPage ?
+					<div>
+					<div>
+
+					</div>
+						<PopupPage ref="popupPage" onCancelBtnClick={this.hidePopupPage}/>
+
+
+
+					</div> : null}
+
+
 			</div>)
 
 		}

@@ -8,7 +8,8 @@ button, input, textarea, th, td,img
 }
 
 body, button, input,textarea {
-	font:300 1em/1.8 Microsoft Yahei,  sans;
+	/*font:300 1em/1.8 Microsoft Yahei,  sans;*/
+	font-family: Microsoft Yahei,  sans;
 }
 
 h1, h2, h3, h4, h5, h6{ font-size:100%; }

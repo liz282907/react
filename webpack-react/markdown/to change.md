@@ -4,3 +4,5 @@
  进入搜索页面的数据，何时发请求。请求后筛选？)
 
  serverConfig.js mock
+
+ 3. sass import后。url路径找不到

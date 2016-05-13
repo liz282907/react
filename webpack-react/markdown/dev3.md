@@ -73,3 +73,39 @@ var style = {
         return (
             <div style={style}>
 ```
+
+
+3. 不能对自定义组件加上className,不会被识别
+
+4. background位置不受padding影响
+
+5. 关于react事件绑定的this.（暂时的实践，待理论考量）
+
+```
+var App = React.createClass({
+    showPopupPage:function(){
+        this.setState({showPopupPage:true});
+        // React.findDomNode(this.refs.popupPage).setAttribute("display","block");
+        // console.log("-------popupPage-------",this.refs.popupPage.getDomNode().);
+    },
+    hidePopupPage:function(){
+        this.setState({showPopupPage:false});
+        // React.findDomNode(this.refs.popupPage).setAttribute("display","none");
+        // console.log("-------popupPage-------",this.refs.popupPage.getDomNode().);
+    },
+    componentDidMount:function(){
+        this.fetchCategoriesFromServer();
+    },
+    ...
+    render:function(){
+       ...
+        return (
+            <div style={style}>
+                <div style={searchWrapper}>
+                    <Search data="搜索" onInputFocus={this.showPopupPage} onInputBlur={this.hidePopupPage}/>
+                </div>
+            </div>)
+        }
+});
+```
+如果onInputFocus = {this.showPopupPage.bind(this)的话，就给当前组件添加了一个函数（showPopupPage）.以后重用该组件，就会自带这个。因此不用绑定即可。
