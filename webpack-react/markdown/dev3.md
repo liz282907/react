@@ -119,3 +119,14 @@ JSON.parse(fs.readFileSync(路径/文件名))
 7.anchor 
 the url should only contain a single anchor.
 ![](http://i2.buimg.com/0e368bc4324a2aee.png)
+![](http://i3.buimg.com/0273186cc8bf9cdc.png)
+
+8,require貌似不支持绝对路径？
+9.webpack不能支持css的+？
+```
+.stat1-item+stat1-item{
+        border-left:1px solid #e7e7e7;
+    }
+```
+
+10. vertical-align是inline-block依赖型的，本元素需要为inline-block，他的vertical-align才会生效

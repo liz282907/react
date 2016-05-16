@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import {Router,Route,Link,IndexRoute} from 'react-router';
 
 import Search from '../Commons/search/Search.js';
 import Grids from '../Commons/Grids/Grids.js';

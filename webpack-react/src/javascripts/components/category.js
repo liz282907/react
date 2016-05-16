@@ -3,6 +3,12 @@ import ReactDom from "react-dom";
 
 import Header from "../Commons/header.js";
 import Select from "../Commons/select.js";
+import Card from "../Commons/Card/Card.js";
+
+
+import '../../stylesheets/reset.css';
+//mock
+import {fieldData} from "../../../mock/fieldData.js";
 
 /*
 var SelectLists = React.createClass({
@@ -16,16 +22,29 @@ var SelectLists = React.createClass({
 //建议 查询条件放数组，不停push，pop，生成query，形成url，与history一致。
 
 var Category = React.createClass({
+	getInitialState:function(){
+		return {
+			fieldsData:[],
+		}
+	},
+	getTotalCards:function(){
+		/*
+		var Cards = this.state.fieldsData.map(function(fieldData){
+			return (
+				<Card fieldData={fieldData} />);
+		});
+		return Cards;
+		*/
+		return (<Card fieldData={fieldData}/>)
+
+	},
 	render:function(){
+		var Cards = this.getTotalCards();
 		var query = this.props.location.query;
 
 		return(
 			<div >
-				<hr />
-				<Header title="Header:props of title"/>
-
-				<Select >
-				</Select>
+				{Cards}
 				<div>{this.props.params.categoryId}</div>
 				<div>当前日期：{query.time}</div>
 				<div>城市：{query.city}</div>

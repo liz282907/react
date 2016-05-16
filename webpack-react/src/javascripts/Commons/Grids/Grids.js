@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDom from "react-dom";
 
 import {host} from '../../../../config/serverConfig.js';
 
