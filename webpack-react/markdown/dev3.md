@@ -109,3 +109,11 @@ var App = React.createClass({
 });
 ```
 如果onInputFocus = {this.showPopupPage.bind(this)的话，就给当前组件添加了一个函数（showPopupPage）.以后重用该组件，就会自带这个。因此不用绑定即可。
+
+6.json文件读取 
+JSON.parse(fs.readFileSync(路径/文件名))
+
+
+![json error](http://i4.buimg.com/aa01fc0ee013247d.png)
+
+[校验工具：](http://www.bejson.com/)

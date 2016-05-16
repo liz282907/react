@@ -1,12 +1,15 @@
 var webpack = require('webpack'),
 	WebpackDevServer = require('webpack-dev-server'),
 	config = require('./webpack.config.js'),
-	// fs = require("fs"),
+	fs = require("fs"),
 	path = require("path"),
 	// rewrite = require("express-urlrewrite"),
 	express = require("express");
 
+
+
 //mock
+
 // import {categoryList} from "./config/serverConfig.js";
 // var serverConfig = require("./config/serverConfig.js");
 
@@ -88,25 +91,8 @@ app.get("/monitor/index/categoryList",function(req,res){
 });
 
 app.get("/monitor/index/monitorList",function(req,res){
-	var data = {"monitorList":[
-					{
-						"name":"出租车监控",
-						"url":""
-						},
-					{
-						"name":"专车监控",
-						"url":""
-						},
-					{
-						"name":"快车监控",
-						"url":""
-						}
-					]
-				};
-
-
-
-	res.json(data);
+	var monitorList = JSON.parse(fs.readFileSync('./mock/monitorList.json'));
+	res.json(monitorList);
 });
 
 

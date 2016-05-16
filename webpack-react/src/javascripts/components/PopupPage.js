@@ -11,6 +11,30 @@ var PopupPage = React.createClass({
 			inputValue:""
 		}
 	},
+	getHintList:function(){
+		var userInput = this.state.inputValue;
+		var monitorList = this.props.monitorListData.monitorList;
+		var hintList = [],temp ={};
+
+		monitorList.forEach(function(level1){
+			level1.secondLevel.forEach(function(level2){
+				level2.fields.filter(function(name){
+					return (name.indexOf(userInput)!==-1);
+				}).forEach(function(filteredName){
+					temp.name = [level1.name,level2.name,filteredName].join("-");
+					temp.url = "";
+					hintList.push(temp);
+				});
+			});
+		});
+		var lis = hintList.map(function(item){
+							return (
+								<li className="listItem">
+									<a href={item.url}>{item.name}</a>
+								</li>)
+						});
+		return lis;
+	},
 	componentDidMount:function(){
 	},
 	handleInputFocus:function(){
@@ -27,12 +51,7 @@ var PopupPage = React.createClass({
 		});
 	},
 	render:function(){
-		var lis = this.props.monitorListData.map(function(item){
-							return (
-								<li className="listItem">
-									<a href={item.url}>{item.name}</a>
-								</li>)
-						});
+		var lis  = this.getHintList();
 
 		return (
 			<div className="popup">

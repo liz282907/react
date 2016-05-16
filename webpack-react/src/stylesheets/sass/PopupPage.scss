@@ -43,8 +43,16 @@
 }
 
 .hint-list{
+	margin: 0 30px;
+	overflow: hidden;
 	.listItem{
+		vertical-align: middle;
+		height: 86px;
 		display: block;
-		width: 100%;
+		border-bottom:1px solid #e7e7e7;
+	}
+	.listItem a{
+		font:28px/86px simHei;
+		color:#666;
 	}
 }

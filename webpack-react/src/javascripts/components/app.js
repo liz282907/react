@@ -42,7 +42,7 @@ var App = React.createClass({
 			dataType:"json",
 			success:function(data){
 				this.setState({
-					monitorList:data.monitorList
+					monitorList:data
 				});
 			}.bind(this),
 			error:function(xhr,errorType,error){
