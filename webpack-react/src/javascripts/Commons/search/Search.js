@@ -10,8 +10,9 @@ var Search = React.createClass({
 	},
 	showFilteredList:function(){
 		var userInput = this.refs.search.value;
-		if(this.props.onInputChange)
+		if(this.props.onInputChange){
 			this.props.onInputChange(userInput);
+		}
 	},
 	render:function(){
 		return (

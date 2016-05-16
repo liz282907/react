@@ -41,6 +41,7 @@ var App = React.createClass({
 			type:"GET",
 			dataType:"json",
 			success:function(data){
+				console.log(data);
 				this.setState({
 					monitorList:data
 				});

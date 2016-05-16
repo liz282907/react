@@ -112,8 +112,10 @@ var App = React.createClass({
 
 6.json文件读取 
 JSON.parse(fs.readFileSync(路径/文件名))
-
-
 ![json error](http://i4.buimg.com/aa01fc0ee013247d.png)
 
 [校验工具：](http://www.bejson.com/)
+
+7.anchor 
+the url should only contain a single anchor.
+![](http://i2.buimg.com/0e368bc4324a2aee.png)

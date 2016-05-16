@@ -4,6 +4,8 @@ import ReactDom from "react-dom";
 import Search from "../Commons/search/Search.js";
 import "../../stylesheets/sass/PopupPage.scss";
 
+import {host} from '../../../config/serverConfig.js';
+
 
 var PopupPage = React.createClass({
 	getInitialState:function(){
@@ -13,16 +15,19 @@ var PopupPage = React.createClass({
 	},
 	getHintList:function(){
 		var userInput = this.state.inputValue;
+		if(!userInput) return null;
 		var monitorList = this.props.monitorListData.monitorList;
-		var hintList = [],temp ={};
-
-		monitorList.forEach(function(level1){
+		var hintList = [];
+		monitorList.forEach(function(level1,index){
 			level1.secondLevel.forEach(function(level2){
 				level2.fields.filter(function(name){
 					return (name.indexOf(userInput)!==-1);
 				}).forEach(function(filteredName){
+					var temp = {};
+
 					temp.name = [level1.name,level2.name,filteredName].join("-");
-					temp.url = "";
+					temp.url = host+(index+1)+"?level2="+level2.name+"#"+filteredName;
+
 					hintList.push(temp);
 				});
 			});
@@ -56,7 +61,7 @@ var PopupPage = React.createClass({
 		return (
 			<div className="popup">
 				<div className="search-box">
-					<Search data="监控" value={this.state.inputValue} onInputFocus = {this.handleInputFocus} onInputChange = {this.handleInputChange}>
+					<Search data="呼叫量" value={this.state.inputValue} onInputFocus = {this.handleInputFocus} onInputChange = {this.handleInputChange}>
 						<img className="delete-btn" onClick={this.handleDeleteBtn} src={require("../../images/delete.png")}/>
 					</Search>
 					<span className="cancel-btn" onClick={this.props.onCancelBtnClick}>取消
