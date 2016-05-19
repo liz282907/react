@@ -1,6 +1,43 @@
 // not use
+@import "../util.scss";
+
+@mixin border-bottom{
+	border-bottom: 1px solid #f3f3f3;
+}
+.item-name{
+	display: inline-block;
+	position: relative;
+	.arrow{
+		width: 14px;
+		height: 8px;
+		margin-left: 13px;
+		background: url(/src/images/arrow.png) ;
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
 .container{
 	position: relative;
 	width: 100%;
 	height: 100%;
+	color:#666;
+	.first-monitor{
+		@include font-style(30px,84px,#666);
+		text-align: center;
+		@include border-bottom;
+
+	}
+	.dimensions{
+		@include border-bottom;
+		padding:0 30px;
+		.dimension{
+			text-align: center;
+			@include font-style(28px,84px,#666);
+			float: left;
+			width: 25%;
+			@include border-bottom;
+		}
+	}
+
 }

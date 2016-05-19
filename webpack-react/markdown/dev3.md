@@ -130,3 +130,17 @@ the url should only contain a single anchor.
 ```
 
 10. vertical-align是inline-block依赖型的，本元素需要为inline-block，他的vertical-align才会生效
+11.border-raduis:父子同时设置才会有效，如果父div中有多个div的话
+
+12.sass不能这么写font吗 
+![](http://i2.buimg.com/118a2a68fa683406.png)。会执行除法貌似
+
+解答：需要这么写
+```
+@mixin font-style($size,$lineHeight,$color){
+    font:#{$size}/#{$lineHeight} simHei;
+    color:$color;
+}
+```
+
+[关于sass那些事，sass用法](http://www.tuicool.com/articles/yIfmY3y)

@@ -7,8 +7,11 @@ import Card from "../Commons/Card/Card.js";
 
 
 import '../../stylesheets/reset.css';
+import '../../stylesheets/sass/page2.scss';
+
 //mock
 import {fieldData} from "../../../mock/fieldData.js";
+import {selectData} from "../../../mock/select.js";
 
 /*
 var SelectLists = React.createClass({
@@ -24,7 +27,8 @@ var SelectLists = React.createClass({
 var Category = React.createClass({
 	getInitialState:function(){
 		return {
-			fieldsData:[],
+			fieldsData:fieldData, //[]
+			selectData:selectData
 		}
 	},
 	getTotalCards:function(){
@@ -42,14 +46,24 @@ var Category = React.createClass({
 		var Cards = this.getTotalCards();
 		var query = this.props.location.query;
 
-		var containerStyle={
-			position: "relative",
-			width: "100%",
-			height: "100%",
-		};
+		var lis = this.state.selectData.dimensions.map(function(dimension){
+			return (
+				<li className="item-name dimension">
+					{dimension.value[0]}
+					<img className="arrow" src={require("../../images/arrow.png")} alt="arrow-down"/>
+				</li>
+			)
+		});
 
 		return(
-			<div style={containerStyle}>
+			<div className="container">
+				<div className="first-monitor">
+					<span className="item-name">{selectData.level1}<img className="arrow" src={require("../../images/arrow.png")} alt="arrow-down"/></span>
+				</div>
+				<ul className="dimensions">
+					{lis}
+				</ul>
+
 				{Cards}
 				<div>{this.props.params.categoryId}</div>
 				<div>当前日期：{query.time}</div>
