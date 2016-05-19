@@ -67,3 +67,46 @@
 		border-left:1px solid #e7e7e7;
 	}
 }
+
+.popup-description{
+	width: 560px;
+	position: fixed;
+	top:50%;
+	left: 50%;
+	transform:translate(-50%,-50%);
+	z-index: 1000;
+	border-radius: 20px;
+
+	background-color: #fff;
+	.popup-body{
+		padding: 0 37px;
+		border-radius: 20px;
+		.title{
+			display: inline-block;
+			width: 100%;
+			text-align: center;
+			// line-height: 110px;
+			color: #666;
+			font:34px/110px simHei;
+			// font-size: 34px;
+		}
+		.definition{
+			color:#666;
+			font:28px/34px simHei;
+		}
+		.detail{
+			font:28px/2 simHei;
+			color: #999;
+		}
+	}
+	.btn{
+		height: 100px;
+		width: 100%;
+		line-height: 100px;
+		background-color: #fafafd;
+		text-align: center;
+		color:#48a5f7;
+		font-size: 34px;
+		border-radius: 20px;
+	}
+}
