@@ -1,10 +1,9 @@
 import React from "react";
-import ReactDom from "react-dom";
 
 import Header from "../Commons/header.js";
 import Select from "../Commons/select.js";
 import Card from "../Commons/Card/Card.js";
-
+import Datepicker from "../Commons/Datepicker/Datepicker.js";
 
 import '../../stylesheets/reset.css';
 import '../../stylesheets/sass/page2.scss';
@@ -28,7 +27,9 @@ var Category = React.createClass({
 	getInitialState:function(){
 		return {
 			fieldsData:fieldData, //[]
-			selectData:selectData
+			selectData:selectData,
+			chosenDate:new Date()
+
 		}
 	},
 	getTotalCards:function(){
@@ -42,15 +43,25 @@ var Category = React.createClass({
 		return (<Card fieldData={fieldData}/>)
 
 	},
+	handleDateChange:function(choice){
+		this.setState({
+			chosenDate:choice
+		})
+	},
+	getDatePicker:function(){
+		return (
+			<Datepicker chosenDate = {this.state.chosenDate} onDateChange={this.handleDateChange}/>
+		)
+	},
 	render:function(){
 		var Cards = this.getTotalCards();
 		var query = this.props.location.query;
 
-		var lis = this.state.selectData.dimensions.map(function(dimension){
+		var lis = this.state.selectData.dimensions.map(function(dimension,index){
 			return (
-				<li className="item-name dimension">
-					{dimension.value[0]}
-					<img className="arrow" src={require("../../images/arrow.png")} alt="arrow-down"/>
+				<li className="dimension" tabIndex="4" dataType={dimension.name}>
+					<span>{dimension.value[0]}</span>
+					<span className="arrow"></span>
 				</li>
 			)
 		});
@@ -58,11 +69,13 @@ var Category = React.createClass({
 		return(
 			<div className="container">
 				<div className="first-monitor">
-					<span className="item-name">{selectData.level1}<img className="arrow" src={require("../../images/arrow.png")} alt="arrow-down"/></span>
+					{selectData.level1}
+					<span className="arrow"></span>
 				</div>
-				<ul className="dimensions">
+				<ul className="dimensions clearfix">
 					{lis}
 				</ul>
+				{}
 
 				{Cards}
 				<div>{this.props.params.categoryId}</div>

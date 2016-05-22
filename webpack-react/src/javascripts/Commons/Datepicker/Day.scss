@@ -1,0 +1,21 @@
+
+.day{
+	font-size: 26px;
+	height: 80px;
+	flex:1;
+	min-width: 100px;
+}
+.day-normal{
+	@extend .day;
+	color:#636363;
+}
+.day-highlight{
+	@extend .day;
+	color:#fff;
+	background:url(/src/images/highlight.png) no-repeat center center;
+}
+.day-disabled{
+	@extend .day;
+	color:#b1b1b1;
+}
+

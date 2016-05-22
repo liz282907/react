@@ -1,22 +1,28 @@
-// not use
+
 @import "../util.scss";
 
 @mixin border-bottom{
 	border-bottom: 1px solid #f3f3f3;
 }
-.item-name{
-	display: inline-block;
-	position: relative;
-	.arrow{
+
+.arrow{
 		width: 14px;
 		height: 8px;
 		margin-left: 13px;
 		background: url(/src/images/arrow.png) ;
 		display: inline-block;
 		vertical-align: middle;
-	}
 }
-
+// .item-name:focus{
+// 		color:#faa15a;
+// 		.arrow{
+// 			background: url(/src/images/arrow_up.png) no-repeat;
+// 			width: 14px;
+// 			height: 8px;
+// 			display: inline-block;
+// 			vertical-align: middle;
+// 		}
+// }
 .container{
 	position: relative;
 	width: 100%;
@@ -37,6 +43,13 @@
 			float: left;
 			width: 25%;
 			@include border-bottom;
+			&:focus{
+				color:#faa15a;
+				.arrow{
+					background: url(/src/images/arrow_up.png) no-repeat;
+				}
+			}
+
 		}
 	}
 
