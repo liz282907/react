@@ -4,6 +4,8 @@ import Header from "../Commons/header.js";
 import Select from "../Commons/select.js";
 import Card from "../Commons/Card/Card.js";
 import Datepicker from "../Commons/Datepicker/Datepicker.js";
+import Overlay from "../Commons/Overlay/Overlay.js";
+
 
 import '../../stylesheets/reset.css';
 import '../../stylesheets/sass/page2.scss';
@@ -28,43 +30,78 @@ var Category = React.createClass({
 		return {
 			fieldsData:fieldData, //[]
 			selectData:selectData,
-			chosenDate:new Date()
+			chosenDate:new Date(),
+			showDatePicker:false
 
 		}
-	},
-	getTotalCards:function(){
-		/*
-		var Cards = this.state.fieldsData.map(function(fieldData){
-			return (
-				<Card fieldData={fieldData} />);
-		});
-		return Cards;
-		*/
-		return (<Card fieldData={fieldData}/>)
-
 	},
 	handleDateChange:function(choice){
 		this.setState({
 			chosenDate:choice
 		})
 	},
+	getPanel:function(){
+
+		var styles = {
+			overlay:{
+				"top":"174px"
+			},
+			datePicker:{
+				"position":"absolute",
+				"width":"100%",
+				"height":"100%",
+				"top":"170px",
+				"left":0,
+				"backgroundColor":"#fff",
+				"zIndex":1000
+			}
+		};
+		var datePickerCompoment = (
+			<div className="panel">
+				<Overlay customerStyle={styles.overlay}/>
+				<Datepicker customerStyle={styles.datePicker} chosenDate = {this.state.chosenDate} onDateChange={this.handleDateChange}/>
+			</div>
+		);
+		return (this.state.showDatePicker?datePickerCompoment:null);
+	},
+	showPanel:function(){
+		this.setState({
+			showDatePicker:true
+		});
+	},
+	getTotalCards:function(){
+		//
+		//var Cards = this.state.fieldsData.map(function(fieldData){
+		//	return (
+		//		<Card fieldData={fieldData} />);
+		//});
+		//return Cards;
+		//
+		return (<Card fieldData={fieldData}/>)
+
+	},
 	getDatePicker:function(){
+		// deprecated
 		return (
 			<Datepicker chosenDate = {this.state.chosenDate} onDateChange={this.handleDateChange}/>
 		)
 	},
 	render:function(){
+		console.log("in Category   ",this.state.chosenDate);
 		var Cards = this.getTotalCards();
 		var query = this.props.location.query;
 
+		var that = this;
+
 		var lis = this.state.selectData.dimensions.map(function(dimension,index){
 			return (
-				<li className="dimension" tabIndex="4" dataType={dimension.name}>
+				<li className="dimension" tabIndex="4" data-type={dimension.name} onClick={that.showPanel}>
 					<span>{dimension.value[0]}</span>
 					<span className="arrow"></span>
 				</li>
 			)
 		});
+
 
 		return(
 			<div className="container">
@@ -75,7 +112,7 @@ var Category = React.createClass({
 				<ul className="dimensions clearfix">
 					{lis}
 				</ul>
-				{}
+				{this.getPanel()}
 
 				{Cards}
 				<div>{this.props.params.categoryId}</div>

@@ -42,7 +42,7 @@
 			@include font-style(28px,84px,#666);
 			float: left;
 			width: 25%;
-			@include border-bottom;
+			// @include border-bottom;
 			&:focus{
 				color:#faa15a;
 				.arrow{

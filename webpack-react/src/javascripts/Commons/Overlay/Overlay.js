@@ -13,11 +13,12 @@ var overlayStyle = {
 	zIndex:5
 }
 var Overlay = React.createClass({
-
-
+	getStyle:function(){
+		return Object.assign({},overlayStyle,this.props.customerStyle);
+	},
 	render:function(){
 		return(
-			<div style={overlayStyle}>
+			<div style={this.getStyle()}>
 			</div>
 			)
 

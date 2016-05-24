@@ -10,13 +10,14 @@ moment.locale("zh-cn",{
 
 //get how many days in a month
 function getDayCountsOfMonth(d){
-	var curMonth = d.getMonth();
-	d.setMonth(curMonth+1,0);
-	return d.getDate();
+	var temp = new Date(d.getFullYear(),d.getMonth(),d.getDate());
+	temp.setMonth(d.getMonth()+1,0);
+	return temp.getDate();
 }
 function getDayCountOfLastMonth(d){
-	d.setMonth(d.getMonth(),0);
-	return d.getDate();
+	var temp = new Date(d.getFullYear(),d.getMonth(),d.getDate());
+	temp.setMonth(d.getMonth(),0);
+	return temp.getDate();
 }
 
 function getFirstDayOfMonth(d){
@@ -31,8 +32,8 @@ function getDayDictOfMonth(d){
 	var initialDate = d.getDate();
 	var daysArr = [];
 	var dayNumArr = [];
-	for(var i=1;i<=getDayArrayOfMonth(d);i++){
-		var newDate = new Date(d.getFullYear(),d.getMonth,i);
+	for(var i=1;i<=getDayCountsOfMonth(d);i++){         //change1
+		var newDate = new Date(d.getFullYear(),d.getMonth(),i);
 		daysArr.push(newDate);
 		dayNumArr.push(i);
 	}
@@ -42,13 +43,15 @@ function getDayDictOfMonth(d){
 
 
 	for(var j=0;j<firstDay;j++){
-		daysArr.unshift(d.setDate(getDayCountOfLastMonth(d)-j));
+		//d.setDate(getDayCountOfLastMonth(d)-j)
+		daysArr.unshift(new Date(d.getFullYear(),d.getMonth()-1,getDayCountOfLastMonth(d)-j));
 		dayNumArr.unshift(getDayCountOfLastMonth(d)-j);
 	}
 	d.setDate(initialDate);
 
 	for(var j=1;j<=(6-lastDay);j++){
-		daysArr.push(new Date(d.getFullYear(),(d.getMonth()+1),j));
+		//考虑12月
+		daysArr.push(new Date(d.getFullYear(),(d.getMonth()+1)%11,j));
 		dayNumArr.push(j);
 	}
 

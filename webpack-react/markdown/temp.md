@@ -46,3 +46,32 @@
 ```
 // React.findDomNode(this.refs.popupPage).setAttribute("display","none");
 ```
+
+
+
+        // switch(e.currentTarget.dataset.type){
+        //  case
+
+        // }
+
+
+<Overlay customerStyle={styles.overlay}/>
+                    <Datepicker customerStyle={styles.datePicker} chosenDate = {this.state.chosenDate} onDateChange={this.handleDateChange}/>
+
+webpack-dev-server --color --hot --progress --display-error-details && 
+,
+    "dev": "webpack-dev-server --color --hot --progress --display-error-details && NODE_ENV = dev node ./server.js"
+
+
+    /*
+
+                <Month chosenDate={this.props.chosenDate} updateChosenDate = {this.props.onDateChange}/>
+                */
+
+
+
+render:function(){
+        return (
+            <div ref="grid" className={this.getClassName()} onClick={this.updateDate}>{this.props.value}</div>
+            )
+    }

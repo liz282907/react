@@ -164,3 +164,30 @@ function getCountDays() {
 }
 例如,  获取当前月份(现在是3月)的总天数: 
 getCountDays()       // 返回31
+
+15.style的可扩展 
+![Object.assign(es6)](http://i4.buimg.com/75a4662191155fd3.png)
+
+16.属性 
+普通元素属性：camel, data-  
+组件：任意
+```
+showPanel:function(e){
+        e.currentTarget.dataset.type
+    },
+```
+
+17.报错总结 
+- Uncaught TypeError: Cannot read property 'showPanel' of undefined.
+
+因为用了this. 而且在map中，this就有了替换，所以要改变
+
+- 设了padding后，会有位移，别忘了改width，或者用box-sizing:border-box
+
+18. 禁用事件 
+```
+"day-disabled":Object.assign({},base,{
+                "color":"#b1b1b1",
+                "pointerEvents":"none"
+            })
+```
