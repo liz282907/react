@@ -6,7 +6,10 @@
  serverConfig.js mock
 
  3. sass import后。url路径找不到
- 4. 点击后时间panel消失，绝对定位，
+ 4. 点击后时间panel消失，绝对定位.
+ 5. 用display取代null和显示
  5. 路由改成switch.
  6. 重要指标居中用text-align:center，伪元素绝对定位 calc
  7. 观察者模式替代props传递下去
+ 8. click事件是否会击穿absolute，tab, touch?
+ 9. 

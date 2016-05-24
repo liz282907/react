@@ -33,25 +33,16 @@ var defaultStyle={
 };
 
 var Navbar = React.createClass({
-	// componentWillReceiveProps:function(){
-	// 	console.log("Navbar Will ReceiveProps ",this.props.chosenDate);
-	// },
-	// shouldComponentUpdate:function(){
-	// 	console.log("Navbar should Update ",this.props.chosenDate);
-	// },
 	changeDate:function(e){
 
-		// debugger;
 		console.log("change month in navbar before: ",month);
 		var month = this.props.chosenDate.getMonth();
 		if(e.currentTarget.dataset.sign=="next")
 			month +=1;
 		else if(e.currentTarget.dataset.sign=="prev")
 			month -=1;
-		// this.props.chosenDate.setMonth(month);
 		console.log("change month in navbar after: ",month);
 		this.props.onArrowClick(new Date(this.props.chosenDate.getFullYear(),month,this.props.chosenDate.getDate()));
-		// console.log("in Navbar   ",this.props.chosenDate);
 	},
 	render:function(){
 		console.log("in navbar   ",this.props.chosenDate);

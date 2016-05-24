@@ -20,7 +20,7 @@ var Datepicker = React.createClass({
 			<div style={this.getStyles()}>
 				<Navbar chosenDate={this.props.chosenDate} onArrowClick = {this.props.onDateChange}/>
 				<Week />
-				<Month chosenDate={this.props.chosenDate} updateChosenDate = {this.props.onDateChange}/>
+				<Month chosenDate={this.props.chosenDate} startDate = {this.props.startDate} endDate = {this.props.endDate} updateChosenDate = {this.props.onDateChange}/>
 
 			</div>
 

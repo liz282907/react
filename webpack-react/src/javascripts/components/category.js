@@ -41,25 +41,36 @@ var Category = React.createClass({
 		})
 	},
 	getPanel:function(){
+		var panelHeight= document.body.clientHeight-170;
+		console.log(document.body.clientHeight-170);
 
 		var styles = {
+			// panel:{
+			// 	"position":"absolute",
+			// 	"width":"100%",
+			// 	"height":panelHeight+"px",
+			// 	"top":"170px",
+			// 	"left":0
+			// },
 			overlay:{
-				"top":"174px"
+				"top":"170px",
+				"position":"fixed"
 			},
 			datePicker:{
 				"position":"absolute",
 				"width":"100%",
-				"height":"100%",
-				"top":"170px",
+				"minHeight":"700px",
+				// "height":"100%",
+				"top":"168px",
 				"left":0,
 				"backgroundColor":"#fff",
 				"zIndex":1000
 			}
 		};
 		var datePickerCompoment = (
-			<div className="panel">
+			<div className="panel" style={styles.panel}>
 				<Overlay customerStyle={styles.overlay}/>
-				<Datepicker customerStyle={styles.datePicker} chosenDate = {this.state.chosenDate} onDateChange={this.handleDateChange}/>
+				<Datepicker customerStyle={styles.datePicker} startDate={new Date(2016,1,24)} endDate={new Date(2016,5,24)} chosenDate = {this.state.chosenDate} onDateChange={this.handleDateChange}/>
 			</div>
 		);
 		return (this.state.showDatePicker?datePickerCompoment:null);
@@ -83,7 +94,7 @@ var Category = React.createClass({
 	getDatePicker:function(){
 		// deprecated
 		return (
-			<Datepicker chosenDate = {this.state.chosenDate} onDateChange={this.handleDateChange}/>
+			<Datepicker chosenDate = {this.state.chosenDate}  onDateChange={this.handleDateChange} />
 		)
 	},
 	render:function(){

@@ -1,7 +1,7 @@
 import React from "react";
 import Day from "./Day.js";
 
-import {getDayDictOfMonth} from "./helper.js";
+import {getDayDictOfMonth,cloneDate,validDateInMonth} from "./helper.js";
 
 
 
@@ -24,15 +24,18 @@ var Month = React.createClass({
 		var that = this;
 		// debugger;
 		var showMonth = getDayDictOfMonth(that.props.chosenDate);
+		var curDate = cloneDate(that.props.chosenDate);
 		// var showMonth = getDayDictOfMonth(this.state.chosenDate);
 		// debugger;
 		console.log("in Month   ",that.props.chosenDate);
-		var firstIndex = showMonth.indexOf(1);
-		var lastIndex = showMonth.lastIndexOf(1);
+		var firstIndex = showMonth.indexOf(1),
+			lastIndex = showMonth.lastIndexOf(1);
 
 		var Days = showMonth.map(function(date,index){
 			var cur_modify;
-			if(index<firstIndex || index>=lastIndex){
+			//无效日期情况：本身不是这个月的（lastindex有可能==firstindex,这样整个月都会被无效掉） ，是这个月但不在有效时间范围内的
+			if(index<firstIndex|| ((lastIndex!=firstIndex) && (index>=lastIndex))||
+				(index>=firstIndex&&index<lastIndex && !validDateInMonth(curDate,date,that.props.startDate,that.props.endDate))){
 				cur_modify = "disabled";
 			}else if(that.props.chosenDate.getDate()==date){
 				cur_modify = "highlight";

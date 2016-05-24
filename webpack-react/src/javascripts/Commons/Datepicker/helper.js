@@ -58,6 +58,15 @@ function getDayDictOfMonth(d){
 	// return daysArr;
 	return dayNumArr;
 }
+function cloneDate(d){
+	return new Date(d.getFullYear(),d.getMonth(),d.getDate());
+}
+function validDateInMonth(base,date,startDate,endDate){
+	base.setDate(date);
+	if(base<startDate ||base>endDate)
+		return false;
+	else return true;
+}
 
 
-export{getDayDictOfMonth,getDayCountsOfMonth};
+export{getDayDictOfMonth,getDayCountsOfMonth,cloneDate,validDateInMonth};
