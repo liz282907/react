@@ -13,12 +13,18 @@ var overlayStyle = {
 	zIndex:5
 }
 var Overlay = React.createClass({
+	handleClick:function(e){
+		if(!this.props.onUserClick)
+			return;
+		else
+			this.props.onUserClick(e);
+	},
 	getStyle:function(){
 		return Object.assign({},overlayStyle,this.props.customerStyle);
 	},
 	render:function(){
 		return(
-			<div style={this.getStyle()}>
+			<div style={this.getStyle()} onClick={this.handleClick}>
 			</div>
 			)
 

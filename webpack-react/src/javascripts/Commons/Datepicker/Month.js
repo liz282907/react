@@ -17,7 +17,7 @@ var Month = React.createClass({
 		// this.setState({
 		// 	chosenDate:nextProps
 		// })
-		console.log("month Will ReceiveProps ",nextProps);
+
 
 	},
 	render:function(){
@@ -27,7 +27,6 @@ var Month = React.createClass({
 		var curDate = cloneDate(that.props.chosenDate);
 		// var showMonth = getDayDictOfMonth(this.state.chosenDate);
 		// debugger;
-		console.log("in Month   ",that.props.chosenDate);
 		var firstIndex = showMonth.indexOf(1),
 			lastIndex = showMonth.lastIndexOf(1);
 
@@ -43,7 +42,9 @@ var Month = React.createClass({
 				cur_modify = "";
 			}
 
-			return <Day key={index} modifier={cur_modify} value={date}  base={that.props.chosenDate} updateChosenDate={that.props.updateChosenDate}/>
+			return <Day key={index} modifier={cur_modify} value={date}  base={that.props.chosenDate}
+						updateChosenDate={that.props.updateChosenDate}
+						hidePanel = {that.props.hidePanel}/>
 
 		});
 

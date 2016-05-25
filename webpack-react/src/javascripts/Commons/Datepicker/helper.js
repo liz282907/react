@@ -67,6 +67,14 @@ function validDateInMonth(base,date,startDate,endDate){
 		return false;
 	else return true;
 }
+function prettyDate(d){
+	var month = "00"+(d.getMonth()+1);
+	month = month.substr(month.length-2);
+
+	var date = "00"+d.getDate();
+	date = date.substr(date.length-2);
+	return [d.getFullYear(),month,date].join(".");
+}
 
 
-export{getDayDictOfMonth,getDayCountsOfMonth,cloneDate,validDateInMonth};
+export{getDayDictOfMonth,cloneDate,validDateInMonth,prettyDate};

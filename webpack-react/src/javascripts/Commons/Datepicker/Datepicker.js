@@ -14,13 +14,16 @@ var Datepicker = React.createClass({
 		return Object.assign({},defaultStyle,this.props.customerStyle);
 	},
 	render:function(){
-		console.log("in datepicker   ",this.props.chosenDate);
 
 		return (
 			<div style={this.getStyles()}>
 				<Navbar chosenDate={this.props.chosenDate} onArrowClick = {this.props.onDateChange}/>
 				<Week />
-				<Month chosenDate={this.props.chosenDate} startDate = {this.props.startDate} endDate = {this.props.endDate} updateChosenDate = {this.props.onDateChange}/>
+				<Month chosenDate={this.props.chosenDate}
+						startDate = {this.props.startDate}
+						endDate = {this.props.endDate}
+						updateChosenDate = {this.props.onDateChange}
+						hidePanel = {this.props.hidePanel}/>
 
 			</div>
 

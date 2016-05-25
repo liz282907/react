@@ -35,17 +35,14 @@ var defaultStyle={
 var Navbar = React.createClass({
 	changeDate:function(e){
 
-		console.log("change month in navbar before: ",month);
 		var month = this.props.chosenDate.getMonth();
 		if(e.currentTarget.dataset.sign=="next")
 			month +=1;
 		else if(e.currentTarget.dataset.sign=="prev")
 			month -=1;
-		console.log("change month in navbar after: ",month);
 		this.props.onArrowClick(new Date(this.props.chosenDate.getFullYear(),month,this.props.chosenDate.getDate()));
 	},
 	render:function(){
-		console.log("in navbar   ",this.props.chosenDate);
 		var style = Object.assign({},defaultStyle.root,this.props.customerStyle);
 
 		return (

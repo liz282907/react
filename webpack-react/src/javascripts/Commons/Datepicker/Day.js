@@ -39,16 +39,12 @@ var Day = React.createClass({
 
 		return Object.assign({},styles,this.props.customerStyle);
 	},
-	updateDate:function(){
+	updateDate:function(e){
 		var base = this.props.base;
 		var curValue = this.refs.grid.childNodes[0].nodeValue;
-		// console.log("ha--",curValue);
-		// console.log("base--",base);
-		// var curDate = this.props.base.setDate(curValue);
-		// console.log("base after--",curDate);
-		// console.log("base after--",this.props.base);
 		var curDate = new Date(base.getFullYear(),base.getMonth(),curValue);
 		this.props.updateChosenDate(curDate);
+		this.props.hidePanel(e);
 	},
 	getClassName:function(){
 			if(this.props.modifier)

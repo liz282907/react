@@ -9,6 +9,7 @@ import Overlay from "../Commons/Overlay/Overlay.js";
 
 import '../../stylesheets/reset.css';
 import '../../stylesheets/sass/page2.scss';
+import {prettyDate} from "../Commons/Datepicker/helper.js";
 
 //mock
 import {fieldData} from "../../../mock/fieldData.js";
@@ -38,11 +39,18 @@ var Category = React.createClass({
 	handleDateChange:function(choice){
 		this.setState({
 			chosenDate:choice
-		})
+		});
+	},
+	hidePanel:function(e){
+
+		$(e.target).closest(".panel").hide();
+		// $(this).closest(".panel").hide();
+		// if((parent=(e.currentTarget.parentNode)).className=="panel")
+		// 	$(parent).hide();
+			// parent.className+="hide";
 	},
 	getPanel:function(){
 		var panelHeight= document.body.clientHeight-170;
-		console.log(document.body.clientHeight-170);
 
 		var styles = {
 			// panel:{
@@ -52,6 +60,9 @@ var Category = React.createClass({
 			// 	"top":"170px",
 			// 	"left":0
 			// },
+			panel:{
+				"display":"none"
+			},
 			overlay:{
 				"top":"170px",
 				"position":"fixed"
@@ -68,17 +79,26 @@ var Category = React.createClass({
 			}
 		};
 		var datePickerCompoment = (
-			<div className="panel" style={styles.panel}>
-				<Overlay customerStyle={styles.overlay}/>
-				<Datepicker customerStyle={styles.datePicker} startDate={new Date(2016,1,24)} endDate={new Date(2016,5,24)} chosenDate = {this.state.chosenDate} onDateChange={this.handleDateChange}/>
+			<div className="panel" data-type="date" style={styles.panel}>
+				<Overlay customerStyle={styles.overlay} onUserClick={this.hidePanel}/>
+				<Datepicker customerStyle={styles.datePicker} startDate={new Date(2016,1,24)} endDate={new Date(2016,5,24)}
+					chosenDate = {this.state.chosenDate}
+					onDateChange={this.handleDateChange}
+					hidePanel={this.hidePanel}/>
 			</div>
 		);
-		return (this.state.showDatePicker?datePickerCompoment:null);
+		return datePickerCompoment;
+		//return (this.state.showDatePicker?datePickerCompoment:null);
 	},
-	showPanel:function(){
-		this.setState({
-			showDatePicker:true
-		});
+	showPanel:function(e){
+		var $panel= $(".panel");
+
+		$panel.forEach(function(value){
+			$(value).hide();
+			if($(e.currentTarget).data("type")===$(value).data("type"))
+				$(value).show();
+		})
+
 	},
 	getTotalCards:function(){
 		//
@@ -98,16 +118,16 @@ var Category = React.createClass({
 		)
 	},
 	render:function(){
-		console.log("in Category   ",this.state.chosenDate);
 		var Cards = this.getTotalCards();
 		var query = this.props.location.query;
 
 		var that = this;
 
-		var lis = this.state.selectData.dimensions.map(function(dimension,index){
+		var lis = that.state.selectData.dimensions.map(function(dimension,index){
 			return (
 				<li className="dimension" tabIndex="4" data-type={dimension.name} onClick={that.showPanel}>
-					<span>{dimension.value[0]}</span>
+					<span>{
+						(dimension.name.indexOf("date")!=-1)?prettyDate(that.state.chosenDate):dimension.value[0]}</span>
 					<span className="arrow"></span>
 				</li>
 			)
@@ -120,7 +140,7 @@ var Category = React.createClass({
 					{selectData.level1}
 					<span className="arrow"></span>
 				</div>
-				<ul className="dimensions clearfix">
+				<ul className="dimensions clearfix" id="dimensions">
 					{lis}
 				</ul>
 				{this.getPanel()}

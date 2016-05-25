@@ -191,3 +191,7 @@ showPanel:function(e){
                 "pointerEvents":"none"
             })
 ```
+
+
+19.currentTarget ,target
+上面的示例中，当在outer上点击时，e.target与e.currentTarget是一样的，都是div；当在inner上点击时，e.target是p，而e.currentTarget则是div。
